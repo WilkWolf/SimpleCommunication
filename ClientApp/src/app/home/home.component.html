@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-lg navbar-dark  bg-primary">
+  <a class="navbar-brand">SimpleCommunication</a>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <button class="btn btn-success" (click)="getTopTenUsers()">top 10 klientów</button>
+      </li>
+      <li class="nav-item">
+        <button class="btn btn-secondary" (click)="getSumOfOrdersInSixMonths()">Get sum of orders in six months</button>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div [hidden]="sumOfOrdersHidden">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Month</th>
+        <th scope="col">Sum of Orders</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of sumOfOrdersData">
+        <td>{{ data.Month }}</td>
+        <td>{{ data.SumOfOrders }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div [hidden]="topTenUsersHidden">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Count Of Orders</th>
+        <th scope="col">Full name</th>
+        <th scope="col">Month</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of topTenUsersData">
+        <td>{{ data.Id }}</td>
+        <td>{{ data.CountOfOrders }}</td>
+        <td>{{ data.Fullname }}</td>
+        <td>{{ data.Month }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
