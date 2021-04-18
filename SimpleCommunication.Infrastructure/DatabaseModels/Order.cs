@@ -3,19 +3,20 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace SimpleCommunication.Infrastructure.Models
+namespace SimpleCommunication.Infrastructure.DatabaseModels
 {
-    public partial class Product
+    public partial class Order
     {
-        public Product()
+        public Order()
         {
             OrderDetails = new HashSet<OrderDetail>();
         }
 
         public int Id { get; set; }
-        public string Name { get; set; }
-        public decimal Price { get; set; }
+        public int CustomerId { get; set; }
+        public DateTime CreatedDate { get; set; }
 
+        public virtual Customer Customer { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

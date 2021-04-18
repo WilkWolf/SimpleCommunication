@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
-namespace SimpleCommunication.Infrastructure.Models
+namespace SimpleCommunication.Infrastructure.DatabaseModels
 {
     public partial class ShopContext : DbContext
     {
@@ -39,8 +39,6 @@ namespace SimpleCommunication.Infrastructure.Models
             {
                 entity.ToTable("Customer");
 
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.Name).IsRequired();
 
                 entity.Property(e => e.Surname).IsRequired();
@@ -50,15 +48,13 @@ namespace SimpleCommunication.Infrastructure.Models
             {
                 entity.ToTable("Order");
 
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.CreatedDate).HasColumnType("date");
 
                 entity.HasOne(d => d.Customer)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.CustomerId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Order__CustomerI__38996AB5");
+                    .HasConstraintName("FK__Order__CustomerI__4F7CD00D");
             });
 
             modelBuilder.Entity<OrderDetail>(entity =>
@@ -72,24 +68,22 @@ namespace SimpleCommunication.Infrastructure.Models
                     .WithMany(p => p.OrderDetails)
                     .HasForeignKey(d => d.OrderId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__OrderDeta__Order__3E52440B");
+                    .HasConstraintName("FK__OrderDeta__Order__5812160E");
 
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.OrderDetails)
                     .HasForeignKey(d => d.ProductId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__OrderDeta__Produ__3D5E1FD2");
+                    .HasConstraintName("FK__OrderDeta__Produ__571DF1D5");
             });
 
             modelBuilder.Entity<Product>(entity =>
             {
                 entity.ToTable("Product");
 
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.Name).IsRequired();
 
-                entity.Property(e => e.Price).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.Price).HasColumnType("decimal(19, 2)");
             });
 
             OnModelCreatingPartial(modelBuilder);

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace SimpleCommunication.Infrastructure.Models
+namespace SimpleCommunication.Infrastructure.DatabaseModels
 {
     public partial class OrderDetail
     {
