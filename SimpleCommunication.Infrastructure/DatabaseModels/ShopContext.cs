@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
 
 #nullable disable
 
@@ -16,6 +14,8 @@ namespace SimpleCommunication.Infrastructure.DatabaseModels
             : base(options)
         {
         }
+        // from stored procedure
+        public virtual DbSet<SPTopTenCustomerInMonth> SPTopTenCustomerInMonths { get; set; }
 
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
@@ -59,22 +59,19 @@ namespace SimpleCommunication.Infrastructure.DatabaseModels
 
             modelBuilder.Entity<OrderDetail>(entity =>
             {
-                entity.HasKey(e => new { e.ProductId, e.OrderId })
-                    .HasName("PKProdutId_OrderId");
-
                 entity.ToTable("OrderDetail");
 
                 entity.HasOne(d => d.Order)
                     .WithMany(p => p.OrderDetails)
                     .HasForeignKey(d => d.OrderId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__OrderDeta__Order__5812160E");
+                    .HasConstraintName("FK__OrderDeta__Order__5BE2A6F2");
 
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.OrderDetails)
                     .HasForeignKey(d => d.ProductId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__OrderDeta__Produ__571DF1D5");
+                    .HasConstraintName("FK__OrderDeta__Produ__5AEE82B9");
             });
 
             modelBuilder.Entity<Product>(entity =>

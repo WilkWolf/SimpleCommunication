@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using SimpleCommunication.API.Models;
-using System.Collections.Generic;
-using System.Linq;
+using SimpleCommunication.Core;
 
 namespace SimpleCommunication.API.Controllers
 {
@@ -18,15 +16,18 @@ namespace SimpleCommunication.API.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<ClientWithOrderQuantity> Get()
+        public string Get()
         {
-            return Enumerable.Range(1, 10).Select(index => new ClientWithOrderQuantity
+            try
             {
-                FullName = "John Doe",
-                ClientId = 1,
-                OrderQuantity = 1
-            })
-            .ToArray();
+                DatabaseGetView databaseGetView = new();
+                string topTenUsersJson = databaseGetView.GetTopTenCustomerInMonth();
+                return topTenUsersJson;
+            }
+            catch
+            {
+                return "Some problem occure";
+            }
         }
     }
 }

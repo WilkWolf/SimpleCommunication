@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using SimpleCommunication.Infrastructure;
 using SimpleCommunication.Infrastructure.Models;
+using SimpleCommunication.Infrastructure.DatabaseModels;
 
 namespace SimpleCommunication.Core
 {
@@ -19,6 +20,9 @@ namespace SimpleCommunication.Core
         {
             services.AddTransient<IInsertCommand, InsertCommand>();
             services.AddScoped<OrderModel>();
+            services.AddScoped<SPTopTenCustomerInMonth>();
+            services.AddScoped<OrderDetailsModel>();
+            services.AddTransient<IStoredProcedure, StoredProcedure>();
         }
     }
 }
