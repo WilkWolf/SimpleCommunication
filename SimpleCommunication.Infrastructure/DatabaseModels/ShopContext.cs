@@ -16,6 +16,7 @@ namespace SimpleCommunication.Infrastructure.DatabaseModels
         }
         // from stored procedure
         public virtual DbSet<SPTopTenCustomerInMonth> SPTopTenCustomerInMonths { get; set; }
+        public virtual DbSet<SPSumOfOrder> SPSumOfOrders { get; set; }
 
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Order> Orders { get; set; }

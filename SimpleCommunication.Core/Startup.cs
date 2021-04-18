@@ -21,6 +21,7 @@ namespace SimpleCommunication.Core
             services.AddTransient<IInsertCommand, InsertCommand>();
             services.AddScoped<OrderModel>();
             services.AddScoped<SPTopTenCustomerInMonth>();
+            services.AddScoped<SPSumOfOrder>();
             services.AddScoped<OrderDetailsModel>();
             services.AddTransient<IStoredProcedure, StoredProcedure>();
         }

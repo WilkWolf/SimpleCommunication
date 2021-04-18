@@ -6,11 +6,11 @@ namespace SimpleCommunication.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class TopTenClientController : ControllerBase
+    public class GetSumOfOrdersController : ControllerBase
     {
-        private readonly ILogger<TopTenClientController> _logger;
+        private readonly ILogger<GetSumOfOrdersController> _logger;
 
-        public TopTenClientController(ILogger<TopTenClientController> logger)
+        public GetSumOfOrdersController(ILogger<GetSumOfOrdersController> logger)
         {
             _logger = logger;
         }
@@ -21,8 +21,8 @@ namespace SimpleCommunication.API.Controllers
             try
             {
                 DatabaseGetView databaseGetView = new();
-                string topTenUsersJson = databaseGetView.GetTopTenCustomerInMonth();
-                return topTenUsersJson;
+                string sumOfOrders = databaseGetView.GetSumOfOrdersInSixMonth();
+                return sumOfOrders;
             }
             catch
             {

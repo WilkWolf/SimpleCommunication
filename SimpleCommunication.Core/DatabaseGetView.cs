@@ -22,6 +22,22 @@ namespace SimpleCommunication.Core
             }
         }
 
+        public string GetSumOfOrdersInSixMonth()
+        {
+            try
+            {
+                StoredProcedure storedProcedure = new();
+
+                var sumOfOrders = storedProcedure.GetSumOfOrdersInSixMonth();
+                var json = JsonConvert.SerializeObject(sumOfOrders);
+                return json;
+            }
+            catch (Exception e)
+            {
+                return $"Problem in converting data to json. {e.Message}";
+            }
+        }
+
     }
 }
 
