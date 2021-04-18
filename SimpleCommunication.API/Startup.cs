@@ -20,6 +20,7 @@ namespace SimpleCommunication.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IDatabaseInsertRows, DatabaseInsertRows>();
+            services.AddTransient<IDatabaseGetView, DatabaseGetView>();
             services.AddControllers();
         }
 

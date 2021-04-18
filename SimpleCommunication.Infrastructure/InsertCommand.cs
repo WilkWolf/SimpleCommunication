@@ -33,5 +33,33 @@ namespace SimpleCommunication.Infrastructure
                 return "Problem with adding rows." + e.Message;
             }
         }
+
+        public string InsertRowsIntoOrderDetailsTable(List<OrderDetailsModel> orderList)
+        {
+            try
+            {
+                List<OrderDetail> list = new();
+                using (var context = new ShopContext())
+                {
+                    foreach (var order in orderList)
+                    {
+                        var newOrder = new OrderDetail()
+                        {
+                            OrderId = order.OrderId,
+                            ProductId = order.ProductId,
+                            Quantity = order.Quantity
+                        };
+                        list.Add(newOrder);
+                    }
+                    context.OrderDetails.AddRange(list);
+                    context.SaveChanges();
+                    return "Added 500 rows into OrderDetail table";
+                }
+            }
+            catch (Exception e)
+            {
+                return "Problem with adding rows." + e.Message;
+            }
+        }
     }
 }

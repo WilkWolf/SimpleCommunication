@@ -6,11 +6,11 @@ namespace SimpleCommunication.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class InsertRowToOrderController : ControllerBase
+    public class InsertRowToOrderDetailsController : ControllerBase
     {
-        private readonly ILogger<InsertRowToOrderController> _logger;
+        private readonly ILogger<InsertRowToOrderDetailsController> _logger;
 
-        public InsertRowToOrderController(ILogger<InsertRowToOrderController> logger)
+        public InsertRowToOrderDetailsController(ILogger<InsertRowToOrderDetailsController> logger)
         {
             _logger = logger;
         }
@@ -21,11 +21,11 @@ namespace SimpleCommunication.API.Controllers
             try
             {
                 DatabaseInsertRows databaseInsertRow = new();
-                return databaseInsertRow.AddRowsIntoOrderTable();
+                return databaseInsertRow.AddRowsIntoOrderDetailsTable();
             }
             catch
             {
-                return "Some problem occure";
+                return "Some problem occur F";
             }
         }
     }
